@@ -1,0 +1,3 @@
+@mixin b($w:1px,$c:skyblue,$l:solid){
+	border: $w $c $l;
+}

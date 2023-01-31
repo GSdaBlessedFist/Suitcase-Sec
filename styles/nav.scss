@@ -1,0 +1,12 @@
+/*nav*/
+@import "variables";
+
+.nav{
+	display:flex;
+	justify-content:space-around;
+	align-items:center;
+	width: 50%;
+	height: $navHeight;
+	@include b(3px);
+
+}

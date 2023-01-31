@@ -1,0 +1,11 @@
+@import "variables";
+@import "mixins";
+
+.main-section{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width: 100%;
+	height:calc(100vh - $navHeight);
+	@include b(5px,blue);
+}
