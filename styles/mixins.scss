@@ -1,3 +1,8 @@
 @mixin b($w:1px,$c:skyblue,$l:solid){
 	border: $w $c $l;
 }
+@mixin mainFont($s:1rem,$w:400){
+	font-family: 'Manjari', sans-serif;
+	font-size: $s;
+	font-weight: $w;
+}

@@ -1,0 +1,24 @@
+@import "fonts";
+@import "variables";
+@import "mixins";
+	
+.info-component{
+	width:100%;
+	height:100%;
+	padding: 3rem;
+	background: $sb;
+}
+.info-title{
+	margin-bottom:1.5rem;
+	@include mainFont(2rem,700);
+	color: white;
+}
+.info-text{
+	@include mainFont(1.85rem,400);
+	color: white;
+}
+.info-code{
+	margin: 1.5rem 0px;
+	@include mainFont(1.65rem,400);
+	color: white;
+}

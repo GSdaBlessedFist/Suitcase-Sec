@@ -1,10 +1,13 @@
-import {useRef,useEffect} from "react";
+import {useState,useRef,useEffect} from "react";
 
 export default function Combo(){
 	
+	const [positions,setPositions] = useState([]);
+	const [activePosition,setActivePosition]=useState(false);
+
 	const options = {
 	  rootMargin: '50px',
-	  threshold: 1.0
+	  threshold: .5
 	}
 
 	const slotATargetRefs = useRef([]);
@@ -43,16 +46,19 @@ export default function Combo(){
 	    }
 	};
 
+	
 	useEffect(() => {
 
-	  const observer = new IntersectionObserver(entries=>{
-		  entries.forEach(entry => {
-		        if(entry.isIntersecting) {
-		          console.log(`Slot ${entry.target.dataset.slotletter}: ${entry.target.dataset.numberposition}`)
-		        }
-		        //observer.unobserve(entry.target);
-		    })
-		},options)
+	  const observer = new IntersectionObserver(function(entries){
+	  	entries.forEach((entry)=>{
+	  		if(entry.isIntersecting) {
+	  			
+	  		}
+	  		console.log(positions)
+	  		//observer.unobserve(entry.target);
+	  	})
+	  },options)
+	  	
 
 	  slotATargets.forEach((i) => {  
 	  	if(i){
@@ -75,7 +81,7 @@ export default function Combo(){
 	  	}
 	  });
 	  
-	}, [slotATargetRefs]);
+	}, []);
 
 
 

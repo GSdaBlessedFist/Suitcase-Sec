@@ -6,6 +6,7 @@
 @import "stage";
 @import "login-component";
 @import "combo-component";
+@import "info-component";
 
 *{
 	margin: 0;
@@ -25,5 +26,6 @@ html,body{
 	@media (min-width:640px){
 		font-size: 16px;
 	}
+	@include mainFont;
 	overflow: scroll;
 }
