@@ -4,8 +4,31 @@
 .stage{
 	@media (min-width:640px){
 		width:640px;
-		padding: 10px;
 	}
 	height:100%;
 	@include b(5px,skyblue,dashed);
+	&--grid{
+		display:grid;
+		height:100%;
+		@media (min-width:640px){
+			grid-template-rows: 15% 40% 45%;
+			grid-template-areas: "checklist"
+								 "login"
+								 "info";
+		}
+		&_checklist{
+			grid-area: checklist;
+			background: #bbb;
+		}
+		&_login{
+			grid-area: login;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+		}
+		&_info{
+			grid-area: info;
+			background: #bbb;
+		}
+	}
 }

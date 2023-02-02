@@ -2,33 +2,33 @@
 @import "mixins";
 
 .combo-component {
-	grid-area: combo;
-	width: 450px;
-	height: 200px;
+	width: 90%;
+	height: 130px;
 	display: flex;
-	justify-content: space-evenly;
-	@include b(3px,red,solid);
+	justify-content: center;
+	align-items: center;
+	@include b(3px,$sb,solid);
 }
 
 .slot-container {
 	width: 100px;
-	height: 200px;
+	height: 130px;
 	display: block;
 	overflow-y: auto;
 	padding: 5px;
-	scroll-snap-type: y mandatory;
+	/*scroll-snap-type: y mandatory;*/
 }
 
 .number-position {
 	scroll-snap-align: start;
 	width: 100%;
-	height: 190px;
+	height: 120px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 1rem;
-	border-bottom: 1.5px orange solid;
-	border-top: 1.5px orange solid;
+	border-bottom: 1.5px $sb solid;
+	border-top: 1.5px $sb solid;
 	transition: .5s all;
 
 	&:hover {

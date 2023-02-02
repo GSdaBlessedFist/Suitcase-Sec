@@ -11,7 +11,13 @@ export default function Home() {
 
       <main className="main-section">
           <section className="stage">
-              <Login/>
+              <div className="stage--grid">
+                  <div id="checklist-container" className="stage--grid_checklist">CHECKLIST</div>
+                  <div id="login-container" className="stage--grid_login">
+                    <Login/>
+                  </div>
+                  <div id="info-container" className="stage--grid_info">INFO</div>
+              </div>
           </section>
 
       </main>     

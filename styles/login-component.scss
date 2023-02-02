@@ -2,34 +2,63 @@
 @import "mixins";
 
 .login-component {
-	display: grid;
-	width: 550px;
-	height: 300px;
-	grid-template-rows: 1fr auto;
-	grid-template-columns: 1fr 60px;
-	grid-template-areas: "email buttons"
-	                     "combo buttons";
-	@include b(5px, green);
+	&--grid{
+		display: grid;
+		width: 400px;
+		height: 225px;
+		grid-template-rows: 75px 150px;
+		grid-template-columns: 75% 25%;
+		grid-template-areas: "email buttons"
+		                     "lock buttons";
+		&_email{
+			grid-area: email;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			@include b(2px,$sb,dashed);
+		}	
+		&_lock{
+			grid-area: lock;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			@include b(2px,$sb,dashed);
+		}
+		&_buttons{
+			grid-area: buttons;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			@include b(2px,$sb,dashed);
+		}	                     
+	}
+	@include b(5px, $sb);
 }
 
 .email-input {
 	grid-area: email;
-	width: 450px;
-	margin: 5px 0px;
-	padding: .35rem;
+	display:flex;
+	justify-content:center;
+	width: 90%;
 	font-size: 1.15rem;
 	text-align: center;
 }
 /*Combo Component in combo-component.scss*/
-.signin-button{
-	grid-area: buttons;
-	width: 50px;
-	height: 50px;
-	@include b(2px);
-}
-.newaccount-button{
-	grid-area: buttons;
-	width: 50px;
-	height: 50px;
-	@include b(2px);
+.buttons-group{
+	position: relative;
+	bottom: 35px;
+	@include b();
+	@at-root{
+		.signin-button{
+			width: 100%;
+			height: 50px;
+			margin-bottom: 15px;
+			@include b(2px);
+		}
+		.newaccount-button{
+			width: 100%;
+			height: 50px;
+			@include b(2px);
+		}
+	}
 }
