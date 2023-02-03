@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 const saltRounds = 10;
 
 export default function Login({setLoginProcessStep, userInfo,setCombo}) {
-	const [email, setEmail] = useState("");//sample@test.com
+	const [email, setEmail] = useState("sample@test.com");//sample@test.com
 	const [slotA,setSlotA]=useState("");
 	const [slotB,setSlotB]=useState("");
 	const [slotC,setSlotC]=useState("");
@@ -27,6 +27,7 @@ export default function Login({setLoginProcessStep, userInfo,setCombo}) {
 		//1 check if email is entered
 		//2 combo: gather posisitions into string
 		//3 hash the combo
+		//4 check user object against db or local userInfo
 
 		if(!email) return;
 		const combination = [slotA,slotB,slotC,slotD].join('');
@@ -46,6 +47,23 @@ export default function Login({setLoginProcessStep, userInfo,setCombo}) {
 		setLoginProcessStep("SigninAttempt")
 		console.log(comments.userFeedback.SigninAttempt)
 		console.log("%cUser: %o","font-weight:bold;color: green;",user)
+
+		//4 check user object against db or local userInfo
+		const filtered =  function(userInfo){
+			return  userInfo.filter(u=>u.email===user.email)
+		}
+		if(filtered(userInfo).length >0){
+			if(user.hashedCombo === filtered(userInfo)[0]['hashedCombo'] ){
+					setLoginProcessStep("SigninSuccess")
+					console.log("Found it")
+
+			}
+			
+			
+		}else{
+			setLoginProcessStep("SigninFail")
+			console.log("Email does not exist")
+		}
 	}
 
 	useEffect(() => {

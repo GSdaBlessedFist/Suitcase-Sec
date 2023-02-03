@@ -19,8 +19,8 @@ const usersObj = [
 export default function Home() {
   /*loginProcessStep: 
   "NoEmail0000" || "InvalidEmail"
-  "EmailUpdate" || "Signin Success"
-  "Signin Fail" || "NewAccountSuccess"
+  "EmailUpdate" || "SigninSuccess"
+  "SigninFail" || "NewAccountSuccess"
   "NewAccountFail"
   */
   const [loginProcessStep,setLoginProcessStep]= useState("NoEmail0000");
