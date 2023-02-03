@@ -1,10 +1,10 @@
 import {useState,useRef,useEffect} from "react";
 
-export default function Combo(){
+export default function Combo({setSlotA,setSlotB,setSlotC,setSlotD}){
 	
-	const [positions,setPositions] = useState([]);
+	const [positions,setPositions]=useState("");
 	const [activePosition,setActivePosition]=useState(false);
-
+	
 	const options = {
 	  rootMargin: '50px',
 	  threshold: .5
@@ -46,44 +46,60 @@ export default function Combo(){
 	    }
 	};
 
-	
 	useEffect(() => {
 
-	  const observer = new IntersectionObserver(function(entries){
+	  
+
+	const SlotAObserver = new IntersectionObserver(function(entries){
 	  	entries.forEach((entry)=>{
 	  		if(entry.isIntersecting) {
-	  			
+	  			setSlotA(`${entry.target.dataset.slotletter}${entry.target.dataset.numberposition}`);
 	  		}
-	  		console.log(positions)
-	  		//observer.unobserve(entry.target);
+	  		//SlotAObserver.unobserve(entry.target);
 	  	})
-	  },options)
-	  	
+	 },options)
+	const SlotBObserver = new IntersectionObserver(function(entries){
+	  	entries.forEach((entry)=>{
+	  		if(entry.isIntersecting) {
+	  			setSlotB(`${entry.target.dataset.slotletter}${entry.target.dataset.numberposition}`);
+	  		}
+	  		//SlotBObserver.unobserve(entry.target);
+	  	})
+	 },options)
+	const SlotCObserver = new IntersectionObserver(function(entries){
+	  	entries.forEach((entry)=>{
+	  		if(entry.isIntersecting) {
+	  			setSlotC(`${entry.target.dataset.slotletter}${entry.target.dataset.numberposition}`);
+	  		}
+	  		//SlotCObserver.unobserve(entry.target);
+	  	})
+	 },options)
+	const SlotDObserver = new IntersectionObserver(function(entries){
+	  	entries.forEach((entry)=>{
+	  		if(entry.isIntersecting) {
+	  			setSlotD(`${entry.target.dataset.slotletter}${entry.target.dataset.numberposition}`);
+	  		}
+	  		//SlotDObserver.unobserve(entry.target);
+	  	})
+	 },options) 
 
 	  slotATargets.forEach((i) => {  
-	  	if(i){
-	  		observer.observe(i);
-	  	}
+	  	if(i){ SlotAObserver.observe(i); }
 	  });
 	  slotBTargets.forEach((i) => {  
-	  	if(i){
-	  		observer.observe(i);
-	  	}
+	  	if(i){ SlotBObserver.observe(i); }
 	  });
 	  slotCTargets.forEach((i) => {  
-	  	if(i){
-	  		observer.observe(i);
-	  	}
+	  	if(i){ SlotCObserver.observe(i); }
 	  });
 	  slotDTargets.forEach((i) => {  
-	  	if(i){
-	  		observer.observe(i);
-	  	}
+	  	if(i){ SlotDObserver.observe(i); }
 	  });
 	  
-	}, []);
+	
+	}, [slotATargets,slotBTargets,slotCTargets,slotDTargets]);
 
-
+	
 
 
 

@@ -5,12 +5,12 @@ import Info from "../components/Info";
 const usersObj = [
   {
     email:"test@example.com",
-    combo:"0123",
+    combo:"A0B1C2D3",
     hashedCombo:""
   },{
     email:"sample@test.com",
-    combo:"0000",
-    hashedCombo:""
+    combo:"A0B0C0D0",
+    hashedCombo:"$2a$10$UOPR74Puo144MLj1Nlf99.7TY0I4JU9wAq1JCsZuP3O2qK3bQvMH6"
   }
 ]
 
