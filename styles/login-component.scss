@@ -32,7 +32,7 @@
 			padding-right: .75rem;
 		}	                     
 	}
-	@include b(5px, $sb);
+	@include b(5px, $c1);
 	border-radius: 20px;
 	padding: 15px;
 }
@@ -42,10 +42,12 @@
 	display:flex;
 	justify-content:center;
 	width: 90%;
+	border-radius: 10px;
 	font-size: 1.15rem;
 	text-align: center;
-	@include b(3px,$sb);
-	color: $sb2;
+	@include b(3px,$c1);
+	padding: .75rem;
+	color: $c2;
 }
 /*Combo Component in combo-component.scss*/
 .buttons-group{
@@ -58,11 +60,11 @@
 			margin-bottom: 15px;
 			@include b(2px);
 			background: white;
-			color:$sb2;
+			color:$c2;
 			font-weight:bold;
 			transition: .75s all;
 			&:hover{
-				background: $sb;
+				background: $c1;
 			}
 		}
 		.newaccount-button{
@@ -70,11 +72,11 @@
 			height: 50px;
 			@include b(2px);
 			background: white;
-			color:$sb2;
+			color:$c2;
 			font-weight:bold;
 			transition: .75s all;
 			&:hover{
-				background: $sb;
+				background: $c1;
 			}
 		}
 	}

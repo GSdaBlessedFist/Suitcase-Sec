@@ -6,6 +6,7 @@ export default function Info({loginProcessStep}){
 	const info = comments.processComments[`${loginProcessStep}`];
 
 	useEffect(()=>{
+		
 	},[])
 
 	return (<>

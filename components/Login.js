@@ -2,15 +2,20 @@ import { useState, useEffect } from "react";
 import Combo from "./Combo";
 import comments from "../comments.js";
 import bcrypt from 'bcryptjs';
+import User from "../models/userModel";
+import axios from 'axios';
+const p = console.log;
+const t = console.table;
+
 const saltRounds = 10;
 
-export default function Login({setLoginProcessStep, userInfo,setCombo}) {
+export default function Login({setLoginProcessStep, userInfo}) {
 	const [email, setEmail] = useState("sample@test.com");//sample@test.com
-	const [slotA,setSlotA]=useState("");
-	const [slotB,setSlotB]=useState("");
-	const [slotC,setSlotC]=useState("");
-	const [slotD,setSlotD]=useState("");
-	
+	const [slotA,setSlotA]=useState();
+	const [slotB,setSlotB]=useState();
+	const [slotC,setSlotC]=useState();
+	const [slotD,setSlotD]=useState();
+	const [lockActivated,setLockActivated]=useState(false);
 
 	const updateEmail = (e) => {
 		let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
@@ -32,40 +37,48 @@ export default function Login({setLoginProcessStep, userInfo,setCombo}) {
 		if(!email) return;
 		const combination = [slotA,slotB,slotC,slotD].join('');
 
+
 		async function hashPassword(plainCombo){
 			const hash = await bcrypt.hash(plainCombo,saltRounds);
 			return hash
 		}
 
-		const user = {
-			email: email,
-			combo:combination, //dev only
-			hashedCombo: hashPassword(combination)
-		}
+		const user = { email: email, hashWord: hashPassword(combination) }
 
-		//console.log(user)
 		setLoginProcessStep("SigninAttempt")
 		console.log(comments.userFeedback.SigninAttempt)
 		console.log("%cUser: %o","font-weight:bold;color: green;",user)
 
-		//4 check user object against db or local userInfo
+		//4 check user object against db 
 		const filtered =  function(userInfo){
 			return  userInfo.filter(u=>u.email===user.email)
 		}
 		if(filtered(userInfo).length >0){
-			if(user.hashedCombo === filtered(userInfo)[0]['hashedCombo'] ){
+			if(user.hashWord === filtered(userInfo)[0]['hashWord'] ){
 					setLoginProcessStep("SigninSuccess")
 					console.log("Found it")
-
 			}
-			
-			
 		}else{
 			setLoginProcessStep("SigninFail")
 			console.log("Email does not exist")
 		}
 	}
-
+	const newAccountHandler = async ()=>{
+		
+		let combination = [slotA,slotB,slotC,slotD].join('');
+		p(combination)
+		let user = new User({
+			email: email,
+			password: combination
+		})
+		try{
+			const newAccount = await axios.post("/api/newaccount",user)
+			.then(response =>{ setLoginProcessStep(response.data.loginStep)	})
+		}catch(err){
+			console.log(err)
+		}
+	}
+	
 	useEffect(() => {
 		console.log(email);
 		//console.log(comments)
@@ -87,14 +100,14 @@ export default function Login({setLoginProcessStep, userInfo,setCombo}) {
 						/>
 					</div>
 					<div className="login-component--grid_lock">
-						<Combo setSlotA={setSlotA} setSlotB={setSlotB} setSlotC={setSlotC} setSlotD={setSlotD}/>
+						<Combo setSlotA={setSlotA} setSlotB={setSlotB} setSlotC={setSlotC} setSlotD={setSlotD} setLockActivated={setLockActivated} lockActivated={lockActivated}/>
 					</div>
 					<div className="login-component--grid_buttons">
 						<div className="buttons-group">
 							<button id="sign-in" onClick={signInHandler} className="signin-button" >
 								Sign in
 							</button>
-							<button id="newaccount" className="newaccount-button" >
+							<button id="newaccount" onClick={newAccountHandler} className="newaccount-button" >
 								New Account
 							</button>
 						</div>

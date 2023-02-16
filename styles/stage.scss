@@ -6,7 +6,7 @@
 		width:640px;
 	}
 	height:100%;
-	@include b(5px,skyblue,dashed);
+	@include b(5px,$c1,dashed);
 	&--grid{
 		display:grid;
 		height:100%;

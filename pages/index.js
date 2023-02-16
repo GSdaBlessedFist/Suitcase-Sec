@@ -1,20 +1,7 @@
 import {useEffect,useState} from "react";
 import Login from "../components/Login";
 import Info from "../components/Info";
-
-const usersObj = [
-  {
-    email:"test@example.com",
-    combo:"A0B1C2D3",
-    hashedCombo:""
-  },{
-    email:"sample@test.com",
-    combo:"A0B0C0D0",
-    hashedCombo:"$2a$10$UOPR74Puo144MLj1Nlf99.7TY0I4JU9wAq1JCsZuP3O2qK3bQvMH6"
-  }
-]
-
-
+import dbConnect from "mongoose";
 
 export default function Home() {
   /*loginProcessStep: 
@@ -24,8 +11,7 @@ export default function Home() {
   "NewAccountFail"
   */
   const [loginProcessStep,setLoginProcessStep]= useState("NoEmail0000");
-  const [combo,setCombo]=useState("A0B0C0D0");
-
+  
   useEffect(()=>{
   },[])
   return (
@@ -41,7 +27,7 @@ export default function Home() {
               <div className="stage--grid">
                   <div id="checklist-container" className="stage--grid_checklist">CHECKLIST</div>
                   <div id="login-container" className="stage--grid_login">
-                    <Login setLoginProcessStep={setLoginProcessStep} userInfo={usersObj} setCombo={setCombo}/>
+                    <Login setLoginProcessStep={setLoginProcessStep} />
                   </div>
                   <div id="info-container" className="stage--grid_info">
                     <Info loginProcessStep={loginProcessStep}/>
