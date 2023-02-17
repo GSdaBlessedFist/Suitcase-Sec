@@ -8,7 +8,9 @@ const UserSchema = new mongoose.Schema({
     required:true
   },
   password: {
-    type: String
+    type: String,
+    required:false,
+    select:false
   },
   hashword: {
     type: String
@@ -29,7 +31,9 @@ UserSchema.pre("save", function (next) {
           }
 
           
+          
           user.hashword = hash
+          user.password = "****";
           next()
         })
       }
