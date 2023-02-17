@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import dbConnect from "../../lib/mongoose";
 import User from "../../models/userModel";
+import comments from "../../comments.js";
 
 export default async function handler(req, res) {
    let message;
@@ -10,18 +11,19 @@ export default async function handler(req, res) {
     console.log("connected to Mongo")
     if(req.method == "POST"){
       const targetUser = await User.findOne({email:email})
-      if(!targetUser){
+      if(!targetUser ){
+
         const userAdd = await User.create({
           email,password
         });
-        message = "A new account was created";
+        message = comments.userFeedback.NewAccountSuccess;
         res.json({
           message:message,
           loginStep: "NewAccountSuccess"
         })
         console.log("A new entry was created.")
       }else{
-        message = "This is a duplicate entry";
+        message = comments.userFeedback.NewAccountFail;
         res.json({
           message:message,
           loginStep: "NewAccountFail"

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import Combo from "./Combo";
 import comments from "../comments.js";
 import bcrypt from 'bcryptjs';
@@ -9,7 +9,8 @@ const t = console.table;
 
 const saltRounds = 10;
 
-export default function Login({setLoginProcessStep, userInfo}) {
+export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) {
+	const emailInputRef = useRef();
 	const [email, setEmail] = useState("sample@test.com");//sample@test.com
 	const [slotA,setSlotA]=useState();
 	const [slotB,setSlotB]=useState();
@@ -66,23 +67,24 @@ export default function Login({setLoginProcessStep, userInfo}) {
 	const newAccountHandler = async ()=>{
 		
 		let combination = [slotA,slotB,slotC,slotD].join('');
-		p(combination)
+		
 		let user = new User({
 			email: email,
 			password: combination
 		})
 		try{
+			if(!email )return null;
 			const newAccount = await axios.post("/api/newaccount",user)
 			.then(response =>{ setLoginProcessStep(response.data.loginStep)	})
+			if(loginProcessStep === "NewAccountFail"){
+				setEmail("")
+			}
 		}catch(err){
 			console.log(err)
 		}
 	}
+
 	
-	useEffect(() => {
-		console.log(email);
-		//console.log(comments)
-	}, [email]);
 	return (
 		<>
 			<div id="login-component" className="login-component">
@@ -90,6 +92,7 @@ export default function Login({setLoginProcessStep, userInfo}) {
 					<div className="login-component--grid_email">
 						<input
 							id="email-input"
+							ref={emailInputRef}
 							onBlur={updateEmail}
 							className="email-input"
 							type="text"
@@ -98,6 +101,7 @@ export default function Login({setLoginProcessStep, userInfo}) {
 							defaultValue={email}
 							required
 						/>
+					<div className="pin-message"><em>the default PIN is 0000</em></div>
 					</div>
 					<div className="login-component--grid_lock">
 						<Combo setSlotA={setSlotA} setSlotB={setSlotB} setSlotC={setSlotC} setSlotD={setSlotD} setLockActivated={setLockActivated} lockActivated={lockActivated}/>

@@ -27,7 +27,7 @@ export default function Home() {
               <div className="stage--grid">
                   <div id="checklist-container" className="stage--grid_checklist">CHECKLIST</div>
                   <div id="login-container" className="stage--grid_login">
-                    <Login setLoginProcessStep={setLoginProcessStep} />
+                    <Login loginProcessStep={loginProcessStep} setLoginProcessStep={setLoginProcessStep} />
                   </div>
                   <div id="info-container" className="stage--grid_info">
                     <Info loginProcessStep={loginProcessStep}/>

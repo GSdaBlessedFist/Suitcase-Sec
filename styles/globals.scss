@@ -18,11 +18,10 @@
     background: transparent; /* make scrollbar transparent */
 }
 html,body{
-	display:grid;
-	grid-template-rows: $navHeight 1fr $navHeight;
+	/*display:grid;*/
+	grid-template-rows: $navHeight 1fr ;
 	grid-template-areas:"nav"
-						"main"
-						"footer";
+						"main";
 	height: 100vh;
   	width: 100vw;
 	@media (min-width:1280px){

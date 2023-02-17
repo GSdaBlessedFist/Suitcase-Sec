@@ -11,11 +11,20 @@
 		grid-template-areas: "email buttons"
 		                     "lock buttons";
 		&_email{
+			position: relative;
+			top:15px;
 			grid-area: email;
 			display:flex;
+			flex-direction: column;
 			justify-content:center;
 			align-items:center;
-			
+			@at-root{
+				.pin-message{
+					position: relative;
+					top: 8px;
+					color:$c2;
+				}
+			}
 		}	
 		&_lock{
 			grid-area: lock;
@@ -46,7 +55,7 @@
 	font-size: 1.15rem;
 	text-align: center;
 	@include b(3px,$c1);
-	padding: .75rem;
+	padding: .7rem;
 	color: $c2;
 }
 /*Combo Component in combo-component.scss*/

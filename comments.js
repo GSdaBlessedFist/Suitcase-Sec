@@ -7,7 +7,7 @@ const comments ={
 		"SigninFail":"Authentication failed",
 		"SigninSuccess":"You've successfully signed in.",
 		"NewAccountSuccess":"Congrats,your new account was created",
-		"NewAccountFail":"Sorry, but that email is already registered."
+		"NewAccountFail":"Sorry, but that email is already registered or you\'re missing a PIN. "
 
 	},
 	"processComments":{
@@ -18,7 +18,7 @@ const comments ={
 		"SigninFail": "<div class=\"info-title\">Signin failed<\/div>",
 		"SigninSuccess": "<div class=\"info-title\">Signin successfully<\/div>",
 		"NewAccountSuccess":"<div class=\"info-title\">Successfully created new account<\/div></br><div class=\"info-text\">So, first the email was validated then when you clicked on the activation button, an <span style=\"font-weight:bold\">onBlur <\/span>handler function reveals the lock.<\/div></br><div class=\"info-text\">The individual sliders are loaded with data-attributes that give us the password string.<\/div><\/br><div class=\"info-text\">That, then gets hashed and saved in the database.<\/div>",
-		"NewAccountFail":"<div class=\"info-title\">Duplicate email found<\/div>"
+		"NewAccountFail":"<div class=\"info-title\">A duplicate email or a missing PIN<\/div><div class=\"info-text\"> A search is performed for the email in the database.  <strong>If</strong> found there\'s a duplication error .<\div>"
 	}
 }
 
