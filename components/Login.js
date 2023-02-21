@@ -1,9 +1,12 @@
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect,useRef,useContext } from "react";
+import Image from 'next/image';
 import Combo from "./Combo";
 import comments from "../comments.js";
 import bcrypt from 'bcryptjs';
 import User from "../models/userModel";
 import axios from 'axios';
+import {LoggedInContext} from "../context/loginContext";
+
 const p = console.log;
 const t = console.table;
 
@@ -18,6 +21,7 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 	const [slotD,setSlotD]=useState();
 	const [message,setMessage] =useState("");
 	const [lockActivated,setLockActivated]=useState(false);
+	const { loggedIn, setLoggedIn } = useContext(LoggedInContext);
 
 	const updateEmail = (e) => {
 		let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
@@ -45,6 +49,9 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 			const signIn = await axios.post("/api/signin",user)
 			.then(response =>{ 
 				setLoginProcessStep(response.data.loginStep)
+				if(loginProcessStep === "SigninSuccess"){
+					return setLoggedIn(true)
+				}
 				console.log(`%c${response.data.message}`,"font-size:1.25rem")	
 			})
 			
@@ -52,6 +59,10 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 			console.log(err)
 		}
 		
+	}
+
+	const signOutHandler = async()=>{
+		setLoggedIn(false)
 	}
 
 	const newAccountHandler = async ()=>{
@@ -67,7 +78,9 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 				
 				if(loginProcessStep === "NewAccountFail"){
 					setEmail("")
+					return
 				}
+				setLoggedIn(true)
 			})		
 
 		}catch(err){
@@ -77,7 +90,8 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 
 	useEffect(()=>{
 		console.log(message)
-	},[message])
+		console.log(loggedIn)
+	},[message,loggedIn])
 	return (
 		<>
 			<div id="login-component" className="login-component">
@@ -101,9 +115,11 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 					</div>
 					<div className="login-component--grid_buttons">
 						<div className="buttons-group">
-							<button id="sign-in" onClick={signInHandler} className="signin-button" >
-								Sign in
-							</button>
+							{loggedIn === true?(
+								<button id="sign-out" onClick={signOutHandler} className="signout-button" >Sign out</button>
+							):(
+								<button id="sign-in" onClick={signInHandler} className="signin-button" >Sign in</button>
+							)}
 							<button id="newaccount" onClick={newAccountHandler} className="newaccount-button" >
 								New Account
 							</button>
@@ -111,6 +127,7 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 					</div>
 				</div>
 			</div>
+			<Image src="/images/suitcase.svg" width={300.5} height={272.5} alt="Suitcase Sec logo" className="logo"/>
 		</>
 	);
 }

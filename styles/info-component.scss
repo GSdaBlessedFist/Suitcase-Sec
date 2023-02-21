@@ -3,15 +3,63 @@
 @import "mixins";
 	
 .info-component{
+	display:flex;
+	flex-direction:column;
+	align-items:center;	
 	width:100%;
 	height:100%;
-	padding: 3rem;
-	padding-top: 2rem;
-	background: $c1;
+	@media (min-width: 640px){
+		padding: 2rem;
+		padding-top: 2rem;
+	}
+	@media (min-width: 768px){
+		padding: 1rem;
+		padding-top: 2rem;
+	}
+	@media (min-width: 1024px){
+		padding: 2rem;
+		padding-top: 2rem;
+	}
+	@media (min-width: 1536px){
+		padding: 2rem;
+		padding-top: 2rem;
+	}
+	background: linear-gradient(to bottom,$c1,$c2 95%);
 	overflow-y:auto;
+	@include b(10px,$c2);
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	@at-root{
+		.info-text{
+			position:relative;
+			@media (min-width:640px){
+				margin-right: 0px;
+				width: 90%;
+			}
+			@media (min-width:768px) {
+				margin-right: 0px;
+				width: 90%;
+			}
+			@media (min-width:1280px){
+				width: 85%;
+			}
+			@media (min-width:1536px){
+				width: 85%;
+			}
+		}
+		.bottom-spacer{
+			position: absolute;
+			left:0;
+			bottom:0;
+			width:100%;
+			height: 1.25rem;
+			background: $c2;
+		}
+	}
 }
 .info-title{
-	margin-bottom:1.25rem;
+	margin-bottom:.25rem;
 	@include mainFont(2rem,700);
 	color: white;
 }

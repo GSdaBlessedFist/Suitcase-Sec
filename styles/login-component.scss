@@ -1,7 +1,15 @@
 @import "variables";
 @import "mixins";
-
 .login-component {
+	position: relative;
+	@media (min-width: 640px){
+		left: 40px;
+	}
+	@media (min-width: 1024px){
+		right: 25px;
+		transform: scale(1.25);
+	}
+	background: white;
 	&--grid{
 		display: grid;
 		width: 400px;
@@ -31,7 +39,6 @@
 			display:flex;
 			justify-content:center;
 			align-items:center;
-			
 		}
 		&_buttons{
 			grid-area: buttons;
@@ -41,11 +48,11 @@
 			padding-right: .75rem;
 		}	                     
 	}
-	@include b(5px, $c1);
+	@include b(5px, $c2);
 	border-radius: 20px;
 	padding: 15px;
+	filter: drop-shadow(5px 5px 5px $c2);
 }
-
 .email-input {
 	grid-area: email;
 	display:flex;
@@ -54,16 +61,19 @@
 	border-radius: 10px;
 	font-size: 1.15rem;
 	text-align: center;
-	@include b(3px,$c1);
+	@include b(3px,$c2);
 	padding: .7rem;
 	color: $c2;
+	&:focus{
+		outline: none;
+	}
 }
 /*Combo Component in combo-component.scss*/
 .buttons-group{
 	position: relative;
 	bottom: 35px;
 	@at-root{
-		.signin-button{
+		%buttons{
 			width: 100%;
 			height: 50px;
 			margin-bottom: 15px;
@@ -75,6 +85,14 @@
 			&:hover{
 				background: $c1;
 			}
+		}
+		.signin-button{
+			@extend %buttons;
+		}
+		.signout-button{
+			@extend %buttons;
+			background: $c1;
+			color: white;
 		}
 		.newaccount-button{
 			width: 100%;

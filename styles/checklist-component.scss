@@ -1,0 +1,74 @@
+@import "variables";
+@import "mixins";
+
+.checklist-component{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: $c1;
+	@include b(3px,$c2,solid);
+	overflow-x: hidden;
+}
+.checklist--grid{
+	display:grid;
+	position: relative;
+	@media (min-width:640px){
+		right: 50px;
+		width: 600px;
+		height:100px;
+		@include b;
+		grid-template-columns: 25% 25% 25% 25%;
+	}
+	&_noEmailNoPIN{
+		display: flex;
+		justify-content:space-around;
+		align-items:center;
+		width:100%;
+	}
+	&_success{
+		display: flex;
+		flex-direction: column;
+		justify-content:flex-start;
+		align-items:flex-start;
+		width:100%;
+	}
+	&_failure{
+		background: red;
+		width:100%;
+	}
+	&_signinStatus{
+		background: orange;
+		width:100%;
+	}
+}
+.checklist-title{
+	text-align: center;
+	margin-bottom:5px;
+	font-weight: bold;
+	color: white;
+}
+.checklist-event{
+	display: flex;
+	align-items:center;
+	vertical-align: baseline;
+	margin: 2.5px 0px;
+	& > div:nth-child(2){
+		margin-left: 5px;
+		font-weight: bold;
+		color: white;
+	}
+}
+.checkbox{
+	width: 25px;
+	height:25px;
+	border-radius: 25%;
+	@include b(3px,white);
+}
+.checkmark{
+	position: relative;
+	bottom:7px;
+	left:3px;
+}

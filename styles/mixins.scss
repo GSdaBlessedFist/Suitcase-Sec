@@ -1,4 +1,4 @@
-@mixin b($w:1px,$c:skyblue,$l:solid){
+@mixin b($w:1px,$c:$c2,$l:solid){
 	border: $w $c $l;
 }
 @mixin mainFont($s:1rem,$w:400){

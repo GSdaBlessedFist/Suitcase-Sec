@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState,useContext} from "react";
 import dbConnect from "../../lib/mongoose";
 import User from "../../models/userModel";
 import comments from "../../comments.js";
@@ -16,19 +16,28 @@ export default async function handler(req, res) {
     console.log("connected with Mongoose")
     if(req.method === "POST"){
       const targetUser = await User.findOne({email:email})
+      if(targetUser?.count === 0){
+        console.log("That email is not found.")
+        let emailNotFoundMessage = comments.userFeedback.SigninFailEmail;
+        res.json({
+          message: emailNotFoundMessage,
+          loginStep: "SigninFailEmail"
+        })
+        return 
+      }
       const targetHash = await targetUser.hashword;
-      
       const validPassword = await bcrypt.compare(password,targetHash)
       if(!validPassword){
         console.log("Incorrect login info.")
-        let signinFailmessage = comments.userFeedback.SigninFail;
+        let signinFailMessage = comments.userFeedback.SigninFail;
         res.json({
-          message: signinFailmessage,
+          message: signinFailMessage,
           loginStep: "SignInFail"
         })
         return
       }
       let signinSuccessMessage = comments.userFeedback.SigninSuccess;
+
         res.json({
           message: signinSuccessMessage,
           loginStep: "SigninSuccess"

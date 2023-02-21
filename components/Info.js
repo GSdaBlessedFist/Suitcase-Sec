@@ -11,7 +11,8 @@ export default function Info({loginProcessStep}){
 
 	return (<>
 		<div id="info-component" className="info-component">
-			<div dangerouslySetInnerHTML={{ __html: info }}></div>
+			<div dangerouslySetInnerHTML={{ __html: info }} className="info-text"></div>
+			<div className="bottom-spacer"></div>
 		</div>
 		
 	</>)

@@ -1,17 +1,20 @@
 import {useEffect,useState} from "react";
 import Login from "../components/Login";
 import Info from "../components/Info";
+import Checklist from "../components/Checklist";
 import dbConnect from "mongoose";
+
 
 export default function Home() {
   /*loginProcessStep: 
   "NoEmail0000" || "InvalidEmail"
   "EmailUpdate" || "SigninSuccess"
-  "SigninFail" || "NewAccountSuccess"
-  "NewAccountFail"
+  "SigninFail" || SigninFailEmail
+  "NewAccountSuccess"||"NewAccountFail"
+  "Signout"
   */
   const [loginProcessStep,setLoginProcessStep]= useState("NoEmail0000");
-  
+
   useEffect(()=>{
   },[])
   return (
@@ -25,7 +28,9 @@ export default function Home() {
       <main className="main-section">
           <section className="stage">
               <div className="stage--grid">
-                  <div id="checklist-container" className="stage--grid_checklist">CHECKLIST</div>
+                  <div id="checklist-container" className="stage--grid_checklist">
+                    <Checklist/>
+                  </div>
                   <div id="login-container" className="stage--grid_login">
                     <Login loginProcessStep={loginProcessStep} setLoginProcessStep={setLoginProcessStep} />
                   </div>
