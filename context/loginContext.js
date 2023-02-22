@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const LoggedInContext = createContext(null);
 
-function LoginContext({ children }) {
+function LoginProvider({ children }) {
 	const [loggedIn, setLoggedIn] = useState();
 
 	return (
@@ -11,4 +11,4 @@ function LoginContext({ children }) {
 		</LoggedInContext.Provider>
 	);
 }
-export default LoginContext;
+export default LoginProvider;

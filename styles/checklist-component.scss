@@ -6,29 +6,32 @@
 	justify-content:center;
 	align-items:center;
 	position: relative;
-	width: 100%;
+	width: 100vw;
 	height: 100%;
 	background: $c1;
-	@include b(3px,$c2,solid);
 	overflow-x: hidden;
+	@include b(10px,$c2);
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
 }
 .checklist--grid{
 	display:grid;
 	position: relative;
 	@media (min-width:640px){
-		right: 50px;
-		width: 600px;
-		height:100px;
-		@include b;
+		width: 620px;
 		grid-template-columns: 25% 25% 25% 25%;
+		grid-template-areas: "noemail failure success signinStatus";
 	}
 	&_noEmailNoPIN{
+		grid-area: noemail;
 		display: flex;
 		justify-content:space-around;
 		align-items:center;
 		width:100%;
 	}
 	&_success{
+		grid-area: success;
 		display: flex;
 		flex-direction: column;
 		justify-content:flex-start;
@@ -36,27 +39,35 @@
 		width:100%;
 	}
 	&_failure{
-		background: red;
+		grid-area: failure;
 		width:100%;
 	}
 	&_signinStatus{
-		background: orange;
+		grid-area: signinStatus;
 		width:100%;
+		
 	}
 }
 .checklist-title{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
+	align-items:center;
 	text-align: center;
 	margin-bottom:5px;
+	font-size: 1.25rem;
 	font-weight: bold;
 	color: white;
 }
 .checklist-event{
 	display: flex;
+	width:100%;
 	align-items:center;
-	vertical-align: baseline;
 	margin: 2.5px 0px;
+	margin-left: 5px;
 	& > div:nth-child(2){
-		margin-left: 5px;
+		margin-left: 10px;
 		font-weight: bold;
 		color: white;
 	}

@@ -6,6 +6,7 @@ import bcrypt from 'bcryptjs';
 import User from "../models/userModel";
 import axios from 'axios';
 import {LoggedInContext} from "../context/loginContext";
+import {ChecklistContext} from "../context/checklistContext";
 
 const p = console.log;
 const t = console.table;
@@ -22,15 +23,40 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 	const [message,setMessage] =useState("");
 	const [lockActivated,setLockActivated]=useState(false);
 	const { loggedIn, setLoggedIn } = useContext(LoggedInContext);
+	const { checklistStatuses, setChecklistStatuses } = useContext(ChecklistContext);
 
 	const updateEmail = (e) => {
 		let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
 		if (!e.target.value.match(pattern)) {
 			setLoginProcessStep("InvalidEmail")
+			setChecklistStatuses({
+				noEmailnoPIN:false,
+				invalidEmail:true,
+				newAccountFail:false,
+				emailNotFound:false,
+				incorrectEmailPIN:false,
+				validEmail:false,
+				newAccountSuccess:false,
+				authenticated:false,
+				signedIn:false,
+				signedOut:false
+			})
 			console.log(comments.userFeedback.InvalidEmail);
 		} else {
 			setEmail(e.target.value);
 			setLoginProcessStep("EmailUpdate")
+			setChecklistStatuses({
+				noEmailnoPIN:false,
+				invalidEmail:false,
+				newAccountFail:false,
+				emailNotFound:false,
+				incorrectEmailPIN:false,
+				validEmail:true,
+				newAccountSuccess:false,
+				authenticated:false,
+				signedIn:false,
+				signedOut:false
+			})
 			console.log(comments.userFeedback.EmailUpdate)
 		}
 	};
@@ -49,6 +75,18 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 			const signIn = await axios.post("/api/signin",user)
 			.then(response =>{ 
 				setLoginProcessStep(response.data.loginStep)
+				setChecklistStatuses({
+					noEmailnoPIN:false,
+					invalidEmail:false,
+					newAccountFail:false,
+					emailNotFound:false,
+					incorrectEmailPIN:false,
+					validEmail:true,
+					newAccountSuccess:false,
+					authenticated:true,
+					signedIn:true,
+					signedOut:false
+				})
 				if(loginProcessStep === "SigninSuccess"){
 					return setLoggedIn(true)
 				}
@@ -63,6 +101,19 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 
 	const signOutHandler = async()=>{
 		setLoggedIn(false)
+		setChecklistStatuses({
+			noEmailnoPIN:true,
+			invalidEmail:false,
+			newAccountFail:false,
+			emailNotFound:false,
+			incorrectEmailPIN:false,
+			validEmail:false,
+			newAccountSuccess:false,
+			authenticated:false,
+			signedIn:false,
+			signedOut:true
+		})
+		setEmail("")
 	}
 
 	const newAccountHandler = async ()=>{
@@ -70,10 +121,35 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 		let combination = [slotA,slotB,slotC,slotD].join('');
 		let user = new User({email:email,password:combination})
 		try{
-			if(!email )return null;
+			if(!email ){
+				setChecklistStatuses({
+					noEmailnoPIN:false,
+					invalidEmail:true,
+					newAccountFail:true,
+					emailNotFound:false,
+					incorrectEmailPIN:false,
+					validEmail:false,
+					newAccountSuccess:false,
+					authenticated:false,
+					signedIn:false,
+					signedOut:false
+				})
+			};
 			const newAccount = await axios.post("/api/newaccount",user)
 			.then(response =>{ 
 				setLoginProcessStep(response.data.loginStep)
+				setChecklistStatuses({
+					noEmailnoPIN:false,
+					invalidEmail:false,
+					newAccountFail:false,
+					emailNotFound:false,
+					incorrectEmailPIN:false,
+					validEmail:true,
+					newAccountSuccess:true,
+					authenticated:true,
+					signedIn:true,
+					signedOut:false
+				})
 				setMessage(response.data.message);
 				
 				if(loginProcessStep === "NewAccountFail"){
@@ -91,7 +167,8 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 	useEffect(()=>{
 		console.log(message)
 		console.log(loggedIn)
-	},[message,loggedIn])
+		console.table(checklistStatuses)
+	},[email,message,loggedIn,checklistStatuses])
 	return (
 		<>
 			<div id="login-component" className="login-component">
