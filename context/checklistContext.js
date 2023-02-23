@@ -13,7 +13,7 @@ function ChecklistProvider({ children }) {
 		newAccountSuccess:false,
 		authenticated:false,
 		signedIn:false,
-		signedOut:false
+		signedOut:true
 	});
 
 	return (

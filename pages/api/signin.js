@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     await dbConnect()
     console.log("connected with Mongoose")
     if(req.method === "POST"){
-      const targetUser = await User.findOne({email:email})
+      const targetUser = await User.findOne({email:email,password:"****"})
       if(targetUser?.count === 0){
         console.log("That email is not found.")
         let emailNotFoundMessage = comments.userFeedback.SigninFailEmail;
@@ -23,9 +23,10 @@ export default async function handler(req, res) {
           message: emailNotFoundMessage,
           loginStep: "SigninFailEmail"
         })
+        // console.log(res)
         return 
       }
-      const targetHash = await targetUser.hashword;
+      const targetHash = await targetUser.hashword ;
       const validPassword = await bcrypt.compare(password,targetHash)
       if(!validPassword){
         console.log("Incorrect login info.")
@@ -48,7 +49,12 @@ export default async function handler(req, res) {
       
     }    
   }catch(err){
-    console.log(err);
+    console.error("User is attempting to Signin without having an account");
+    let signinFailEmailMessage = comments.userFeedback.SigninFailEmail;
+    res.json({
+          message: signinFailEmailMessage,
+          loginStep: "SigninFailEmail"
+        })
     res.status(500);
   }
     

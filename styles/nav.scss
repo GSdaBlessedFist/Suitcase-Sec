@@ -1,13 +1,42 @@
-/*nav*/
+@import "mixins";
 @import "variables";
 
 .nav{
 	grid-area:nav;
 	display:flex;
-	justify-content:space-around;
+	justify-content:flex-start;
 	align-items:center;
-	width: 50%;
+	width: 100%;
 	height: $navHeight;
-	@include b(3px);
-
+	@at-root{
+		#nav-logo{
+			margin-left: 5px;
+			height:$navHeight;
+		}
+		#nav-about-site{
+			position: relative;
+			top: 10px;
+			margin: 10px;
+			color: $c2;
+			text-decoration: none;
+		}
+		#nav-dev{
+			position: relative;
+			top: 10px;
+			left:160px;
+			margin: 10px;	
+			color: $c1;
+			&::after{
+				position: relative;
+				content:"2023";
+				top: -13px;
+				right: 18px;
+			}
+			&-dark{
+				font-size: 1.25rem;
+				font-weight: bold;
+				color: $c2;
+			}
+		}
+	}
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect,useRef,useContext } from "react";
+import { useRouter } from 'next/router'
 import Image from 'next/image';
 import Combo from "./Combo";
 import comments from "../comments.js";
@@ -13,9 +14,10 @@ const t = console.table;
 
 const saltRounds = 10;
 
-export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) {
+export default function Login({email,setEmail,loginProcessStep,setLoginProcessStep, userInfo}) {
+	const router = useRouter();
 	const emailInputRef = useRef();
-	const [email, setEmail] = useState("");//sample@test.com
+	//const [email, setEmail] = useState("");//sample@test.com
 	const [slotA,setSlotA]=useState();
 	const [slotB,setSlotB]=useState();
 	const [slotC,setSlotC]=useState();
@@ -71,26 +73,56 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 			password: combination
 		})
 		try{
-			if(!email )return null;
+			// if(!email ){
+			// 	setChecklistStatuses({
+			// 		noEmailnoPIN:false,
+			// 		invalidEmail:false,
+			// 		newAccountFail:false,
+			// 		emailNotFound:true,
+			// 		incorrectEmailPIN:false,
+			// 		validEmail:true,
+			// 		newAccountSuccess:false,
+			// 		authenticated:false,
+			// 		signedIn:false,
+			// 		signedOut:false
+			// 	})
+			// }
 			const signIn = await axios.post("/api/signin",user)
 			.then(response =>{ 
 				setLoginProcessStep(response.data.loginStep)
-				setChecklistStatuses({
-					noEmailnoPIN:false,
-					invalidEmail:false,
-					newAccountFail:false,
-					emailNotFound:false,
-					incorrectEmailPIN:false,
-					validEmail:true,
-					newAccountSuccess:false,
-					authenticated:true,
-					signedIn:true,
-					signedOut:false
-				})
-				if(loginProcessStep === "SigninSuccess"){
-					return setLoggedIn(true)
-				}
-				console.log(`%c${response.data.message}`,"font-size:1.25rem")	
+				// if(loginProcessStep === "SigninFailEmail"){
+				// 	setChecklistStatuses({
+				// 		noEmailnoPIN:false,
+				// 		invalidEmail:false,
+				// 		newAccountFail:false,
+				// 		emailNotFound:true,
+				// 		incorrectEmailPIN:false,
+				// 		validEmail:true,
+				// 		newAccountSuccess:false,
+				// 		authenticated:false,
+				// 		signedIn:false,
+				// 		signedOut:true
+				// 	})
+				// 	setLoggedIn(false)
+				// }
+				// if(loginProcessStep === "SigninSuccess"){
+				// 	setChecklistStatuses({
+				// 		noEmailnoPIN:false,
+				// 		invalidEmail:false,
+				// 		newAccountFail:false,
+				// 		emailNotFound:false,
+				// 		incorrectEmailPIN:false,
+				// 		validEmail:true,
+				// 		newAccountSuccess:false,
+				// 		authenticated:true,
+				// 		signedIn:true,
+				// 		signedOut:false
+				// 	})
+				// 	setLoggedIn(true)
+				// 	// return 
+				// }
+				console.log(`%c${response.data.message}`,"font-size:1.25rem");	
+				return
 			})
 			
 		}catch(err){
@@ -113,7 +145,8 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 			signedIn:false,
 			signedOut:true
 		})
-		setEmail("")
+		setEmail("email");
+		router.reload(window.location.pathname);
 	}
 
 	const newAccountHandler = async ()=>{
@@ -165,10 +198,38 @@ export default function Login({loginProcessStep,setLoginProcessStep, userInfo}) 
 	}
 
 	useEffect(()=>{
-		console.log(message)
-		console.log(loggedIn)
-		console.table(checklistStatuses)
-	},[email,message,loggedIn,checklistStatuses])
+		if(loginProcessStep === "SigninFailEmail"){
+					setChecklistStatuses({
+						noEmailnoPIN:false,
+						invalidEmail:false,
+						newAccountFail:false,
+						emailNotFound:true,
+						incorrectEmailPIN:false,
+						validEmail:true,
+						newAccountSuccess:false,
+						authenticated:false,
+						signedIn:false,
+						signedOut:true
+					})
+					setLoggedIn(false)
+				}
+				if(loginProcessStep === "SigninSuccess"){
+					setChecklistStatuses({
+						noEmailnoPIN:false,
+						invalidEmail:false,
+						newAccountFail:false,
+						emailNotFound:false,
+						incorrectEmailPIN:false,
+						validEmail:true,
+						newAccountSuccess:false,
+						authenticated:true,
+						signedIn:true,
+						signedOut:false
+					})
+					setLoggedIn(true)
+					// return 
+				}
+	},[email,message,loggedIn,loginProcessStep])
 	return (
 		<>
 			<div id="login-component" className="login-component">

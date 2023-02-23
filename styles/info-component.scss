@@ -59,11 +59,12 @@
 	}
 }
 .info-title{
-	margin-bottom:.25rem;
+	margin-bottom: 20px;
 	@include mainFont(2rem,700);
 	color: white;
 }
 .info-text{
+	margin-bottom: 20px;
 	@include mainFont(1.85rem,400);
 	color: white;
 }
@@ -109,6 +110,9 @@
 	margin: 1.5rem 0px;
 	@include mainFont(1.65rem,400);
 	color: white;
+}
+.info-text-box{
+	border:1px white solid;
 }
 .signinAttemptExtra{
 	display: inline;
