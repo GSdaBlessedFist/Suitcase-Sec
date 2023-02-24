@@ -1,5 +1,5 @@
 import { useState, useEffect,useRef,useContext } from "react";
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Combo from "./Combo";
 import comments from "../comments.js";
@@ -73,54 +73,10 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 			password: combination
 		})
 		try{
-			// if(!email ){
-			// 	setChecklistStatuses({
-			// 		noEmailnoPIN:false,
-			// 		invalidEmail:false,
-			// 		newAccountFail:false,
-			// 		emailNotFound:true,
-			// 		incorrectEmailPIN:false,
-			// 		validEmail:true,
-			// 		newAccountSuccess:false,
-			// 		authenticated:false,
-			// 		signedIn:false,
-			// 		signedOut:false
-			// 	})
-			// }
 			const signIn = await axios.post("/api/signin",user)
 			.then(response =>{ 
 				setLoginProcessStep(response.data.loginStep)
-				// if(loginProcessStep === "SigninFailEmail"){
-				// 	setChecklistStatuses({
-				// 		noEmailnoPIN:false,
-				// 		invalidEmail:false,
-				// 		newAccountFail:false,
-				// 		emailNotFound:true,
-				// 		incorrectEmailPIN:false,
-				// 		validEmail:true,
-				// 		newAccountSuccess:false,
-				// 		authenticated:false,
-				// 		signedIn:false,
-				// 		signedOut:true
-				// 	})
-				// 	setLoggedIn(false)
-				// }
-				// if(loginProcessStep === "SigninSuccess"){
-				// 	setChecklistStatuses({
-				// 		noEmailnoPIN:false,
-				// 		invalidEmail:false,
-				// 		newAccountFail:false,
-				// 		emailNotFound:false,
-				// 		incorrectEmailPIN:false,
-				// 		validEmail:true,
-				// 		newAccountSuccess:false,
-				// 		authenticated:true,
-				// 		signedIn:true,
-				// 		signedOut:false
-				// 	})
-				// 	setLoggedIn(true)
-				// 	// return 
-				// }
+				
 				console.log(`%c${response.data.message}`,"font-size:1.25rem");	
 				return
 			})

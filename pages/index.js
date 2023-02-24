@@ -5,6 +5,7 @@ import Login from "../components/Login";
 import Info from "../components/Info";
 import Checklist from "../components/Checklist";
 import Dashboard from "../components/Dashboard";
+import CodeButton from "../components/CodeButton";
 import dbConnect from "mongoose";
 import {LoggedInContext} from "../context/loginContext";
 
@@ -56,6 +57,7 @@ export default function Home() {
                   <div id="info-container" className="stage--grid_info">
                     <Info loginProcessStep={loginProcessStep}/>
                   </div>
+                  <CodeButton/>
               </div>
           </section>
 

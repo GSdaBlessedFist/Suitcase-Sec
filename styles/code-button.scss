@@ -1,0 +1,25 @@
+@import "variables";
+@import "mixins";
+
+.code-button-component{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: sticky;
+	width:60px;
+	height:60px !important;
+	@media (min-width:640px){
+		bottom:15px;
+		left:88%;
+	}
+	@include b(2px,white);
+	@at-root{
+		.code-button-text{
+			text-align: right;
+			padding-right: 5px;
+			word-spacing: 5px;
+			color: white;
+		}
+		
+	}
+}

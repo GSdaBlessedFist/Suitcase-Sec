@@ -1,5 +1,6 @@
 import {useEffect,useState} from "react";
 import comments from "../comments.js";
+import CodeButton from "./CodeButton";
 
 export default function Info({loginProcessStep}){
 	

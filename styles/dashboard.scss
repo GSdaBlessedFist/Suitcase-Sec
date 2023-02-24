@@ -5,33 +5,93 @@
 	display:flex;
 	flex-direction:column;
 	align-items:center;	
+	gap: 5px;
 	width:100%;
 	height:100%;
 	@media (min-width: 640px){
-		padding: 2rem;
-		padding-top: 2rem;
+		padding-top: .5rem;
+		padding-bottom: .5rem;
 	}
 }
 #dashboard-header{
 	width: 100%;
-	padding: 10px 0;
+	padding: 5px 0;
 	text-align: center;
+	background: $c2;
+	color:white;
 	@include b(3px);
 }
+.dashboard-box-message-group{
+	width:100%;
+	height:100%;
+	padding: 0 5px;
+	display: flex;
+	justify-content:space-between;
+	align-items:center;
+}
 .dashboard-boxes-container{
-	width: 100%;
-	padding: 10px 0;
-	@include b(3px);
+	width: 50%;
+	height:100%;
 	&--grid{
 		display: grid;
-		width: 75%;
-		grid-template-columns: 10% 30% 30% 10%;
-		grid-template-rows: 50% 50%;
-		grid-gap: 10px;
-		grid-template-areas: "leftbar topMid topMid rightbar"
+		width: 100%;
+		height:100%;
+		grid-template-columns: 20% 30% 30% 20%;
+		grid-template-rows: 10% 45% 45%;
+		grid-gap: 1px;
+		grid-template-areas: "navbar navbar navbar navbar"
+							 "leftbar topMid topMid rightbar"
 							 "leftbar bottomLeft bottomRight rightbar";
-		&__box{
-			@include b;
+		&--box{
+			width: 100%;
+			height:100%;
+			&__leftbar{
+				grid-area:leftbar;
+				@include b(3px,$c1);
+			}
+			&__navbar{
+				grid-area: navbar;
+				@include b(3px,$c1);
+			}
+			&__topMid{
+				grid-area:topMid;
+				@include b(3px,$c1);
+			}
+			&__bottomLeft{
+				grid-area: bottomLeft;
+				@include b(3px,$c1);
+			}
+			&__bottomRight{
+				grid-area: bottomRight;
+				@include b(3px,$c1);
+			}
+			&__rightbar{
+				grid-area:rightbar;
+				@include b(3px,$c1);
+			}
 		}							 
+	}
+}
+.dashboard-message-area{
+	width:49%;
+	height: 100%;
+	padding: 2rem;
+	@include b;
+	@at-root{
+		.dashboard-text{
+			color: $c2;
+			font-size: 1.25rem;
+		}
+		.dashboard-strong{
+			font-size: 1.55rem;
+			color: $c1;
+		}
+		#dashboard-signout-button{
+			position: relative;
+			top: 70px;
+			left: 170px;
+			color: $c2;
+			font-size: 1.25rem;
+		}
 	}
 }
