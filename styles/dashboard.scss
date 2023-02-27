@@ -75,21 +75,29 @@
 .dashboard-message-area{
 	width:49%;
 	height: 100%;
-	padding: 2rem;
+	padding: 2rem 0;
+	background-image: url("/images/whatsinthebox.png") ;
+	background-size: cover;
 	@include b;
 	@at-root{
 		.dashboard-text{
-			color: $c2;
+			text-align: right;
+			position: relative;
+			top: -25px;
+			padding: .125rem;
+			padding-right:1rem;
+			color: white;
 			font-size: 1.25rem;
+			background: black;
 		}
 		.dashboard-strong{
 			font-size: 1.55rem;
-			color: $c1;
+			color: $c2;
 		}
 		#dashboard-signout-button{
 			position: relative;
-			top: 70px;
-			left: 170px;
+			top: 40px;
+			left: 220px;
 			color: $c2;
 			font-size: 1.25rem;
 		}

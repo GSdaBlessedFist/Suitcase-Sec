@@ -25,7 +25,7 @@ export default function Dashboard({email}){
 					</div>	
 				</div>
 				<div className="dashboard-message-area">
-					<div className="dashboard-text">Now we can <span className="dashboard-strong">finally</span> see what's in the box. </div>
+					<div className="dashboard-text">Now we can <span className="dashboard-strong">finally</span> see <br/><em>what's in the box.</em> </div>
 					<button id="dashboard-signout-button" onClick={signOutHandler}>Signout</button>
 				</div>
 			</div>
