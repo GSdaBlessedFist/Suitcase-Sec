@@ -1,3 +1,5 @@
+@import "keyframes";
+
 @mixin b($w:1px,$c:$c2,$l:solid){
 	border: $w $c $l;
 }
@@ -5,4 +7,8 @@
 	font-family: 'Manjari', sans-serif;
 	font-size: $s;
 	font-weight: $w;
+}
+@mixin budgeLeft{
+	
+	
 }

@@ -38,7 +38,8 @@ export default function Checklist(){
 		  		</div>
 		  		<div className="checklist-event">
 		  			<div className="checkbox">
-		  				{(checklistStatuses.authenticated)?<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
+		  				{(checklistStatuses.authenticated)?
+		  					<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
 		  			</div>
 		  			<div>Authenticated</div>
 		  		</div>
@@ -47,25 +48,29 @@ export default function Checklist(){
 		  		<div className="checklist-title">Failure</div>
 		  		<div className="checklist-event">
 		  			<div className="checkbox">
-		  				{(checklistStatuses.invalidEmail)?<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
+		  				{(checklistStatuses.invalidEmail)?
+		  					<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
 		  			</div>
 		  			<div>Invalid Email</div>
 		  		</div>
 		  		<div className="checklist-event">
 		  			<div className="checkbox">
-		  				{(checklistStatuses.newAccountFail)?<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
+		  				{(checklistStatuses.newAccountFail)?
+		  					<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
 		  			</div>
 		  			<div>New Account Failure</div>
 		  		</div>
 		  		<div className="checklist-event">
 		  			<div className="checkbox">
-		  				{(checklistStatuses.emailNotFound)?<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
+		  				{(checklistStatuses.emailNotFound)?
+		  					<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
 		  			</div>
 		  			<div>Email not found</div>
 		  		</div>
 		  		<div className="checklist-event">
 		  			<div className="checkbox">
-		  				{(checklistStatuses.incorrectEmailPIN)?<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
+		  				{(checklistStatuses.incorrectEmailPIN)?
+		  					<img src="/images/checkmark(green).svg" className="checkmark"/>:<div></div>}
 		  			</div>
 		  			<div>Incorrect Email/PIN</div>
 		  		</div>

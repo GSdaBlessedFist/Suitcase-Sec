@@ -12,7 +12,7 @@ export default function Dashboard({email}){
 	console.log(displayName)
 	return (<>
 		<div className="dashboard-component">
-			<div id="dashboard-header">Thank you for playing along, <span style={{"font-weight":"bold","font-size":"1.25rem"}}>{displayName}</span></div>
+			<div id="dashboard-header">Thank you for playing along, <span style={{"fontWeight":"bold","fontSize":"1.25rem"}}>{displayName}</span></div>
 			<div className="dashboard-box-message-group">
 				<div className="dashboard-boxes-container">
 					<div className="dashboard-boxes-container--grid">

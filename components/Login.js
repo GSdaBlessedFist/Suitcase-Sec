@@ -75,8 +75,7 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 		try{
 			const signIn = await axios.post("/api/signin",user)
 			.then(response =>{ 
-				setLoginProcessStep(response.data.loginStep)
-				
+				setLoginProcessStep(response.data.loginStep);
 				console.log(`%c${response.data.message}`,"font-size:1.25rem");	
 				return
 			})
@@ -127,25 +126,55 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 			const newAccount = await axios.post("/api/newaccount",user)
 			.then(response =>{ 
 				setLoginProcessStep(response.data.loginStep)
-				setChecklistStatuses({
-					noEmailnoPIN:false,
-					invalidEmail:false,
-					newAccountFail:false,
-					emailNotFound:false,
-					incorrectEmailPIN:false,
-					validEmail:true,
-					newAccountSuccess:true,
-					authenticated:true,
-					signedIn:true,
-					signedOut:false
-				})
-				setMessage(response.data.message);
+				console.log(loginProcessStep)
+				if(loginProcessStep == "NewAccountFail"){
+					setLoggedIn(false)
+				}else{
+					setLoggedIn(true)
+				}
+				// if(loginProcessStep == "NewAccountFail"){
+				// 	setEmail("")
+				// 	setLoggedIn(false)
+				// 	setChecklistStatuses({
+				// 		noEmailnoPIN:false,
+				// 		invalidEmail:false,
+				// 		newAccountFail:true,
+				// 		emailNotFound:false,
+				// 		incorrectEmailPIN:false,
+				// 		validEmail:true,
+				// 		newAccountSuccess:false,
+				// 		authenticated:true,
+				// 		signedIn:false,
+				// 		signedOut:true
+				// 	})
+				// 	setMessage(response.data.message);
+				// 	console.log()
+				// }else{
+				// 	setChecklistStatuses({
+				// 		noEmailnoPIN:false,
+				// 		invalidEmail:false,
+				// 		newAccountFail:false,
+				// 		emailNotFound:false,
+				// 		incorrectEmailPIN:false,
+				// 		validEmail:true,
+				// 		newAccountSuccess:true,
+				// 		authenticated:true,
+				// 		signedIn:true,
+				// 		signedOut:false
+				// 	})
+				// 	setMessage(response.data.message);
+				// 	setLoggedIn(true)
+				// }
 				
+				setMessage(response.data.message);
 				if(loginProcessStep === "NewAccountFail"){
 					setEmail("")
+					console.log(loginProcessStep)
 					return
-				}
-				setLoggedIn(true)
+				}					
+				// }else{
+				// 	setLoggedIn(true)
+				// }
 			})		
 
 		}catch(err){
@@ -154,38 +183,86 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 	}
 
 	useEffect(()=>{
-		if(loginProcessStep === "SigninFailEmail"){
-					setChecklistStatuses({
-						noEmailnoPIN:false,
-						invalidEmail:false,
-						newAccountFail:false,
-						emailNotFound:true,
-						incorrectEmailPIN:false,
-						validEmail:true,
-						newAccountSuccess:false,
-						authenticated:false,
-						signedIn:false,
-						signedOut:true
-					})
-					setLoggedIn(false)
-				}
-				if(loginProcessStep === "SigninSuccess"){
-					setChecklistStatuses({
-						noEmailnoPIN:false,
-						invalidEmail:false,
-						newAccountFail:false,
-						emailNotFound:false,
-						incorrectEmailPIN:false,
-						validEmail:true,
-						newAccountSuccess:false,
-						authenticated:true,
-						signedIn:true,
-						signedOut:false
-					})
-					setLoggedIn(true)
-					// return 
-				}
-	},[email,message,loggedIn,loginProcessStep])
+		// if(loginProcessStep === "SigninFailEmail"){
+		// 	setChecklistStatuses({
+		// 		noEmailnoPIN:false,
+		// 		invalidEmail:false,
+		// 		newAccountFail:false,
+		// 		emailNotFound:true,
+		// 		incorrectEmailPIN:false,
+		// 		validEmail:true,
+		// 		newAccountSuccess:false,
+		// 		authenticated:false,
+		// 		signedIn:false,
+		// 		signedOut:true
+		// 	})
+		// 	setLoggedIn(false)
+		// 	return
+		// }
+		// if(loginProcessStep === "SigninSuccess"){
+		// 	setChecklistStatuses({
+		// 		noEmailnoPIN:false,
+		// 		invalidEmail:false,
+		// 		newAccountFail:false,
+		// 		emailNotFound:false,
+		// 		incorrectEmailPIN:false,
+		// 		validEmail:true,
+		// 		newAccountSuccess:false,
+		// 		authenticated:true,
+		// 		signedIn:true,
+		// 		signedOut:false
+		// 	})
+		// 	setLoggedIn(true)
+		// 	return 
+		// }
+		switch(loginProcessStep){
+			case "SigninFailEmail":
+				setChecklistStatuses({
+					noEmailnoPIN:false,
+					invalidEmail:false,
+					newAccountFail:false,
+					emailNotFound:true,
+					incorrectEmailPIN:false,
+					validEmail:true,
+					newAccountSuccess:false,
+					authenticated:false,
+					signedIn:false,
+					signedOut:true
+				})
+				break;
+			case "SigninSuccess":
+				setChecklistStatuses({
+					noEmailnoPIN:false,
+					invalidEmail:false,
+					newAccountFail:false,
+					emailNotFound:false,
+					incorrectEmailPIN:false,
+					validEmail:true,
+					newAccountSuccess:false,
+					authenticated:true,
+					signedIn:true,
+					signedOut:false
+				})
+				break;
+			case "NewAccountFail":
+				setEmail("")
+				setChecklistStatuses({
+					noEmailnoPIN:false,
+					invalidEmail:true,
+					newAccountFail:true,
+					emailNotFound:false,
+					incorrectEmailPIN:false,
+					validEmail:false,
+					newAccountSuccess:false,
+					authenticated:false,
+					signedIn:false,
+					signedOut:true
+				})
+				break;
+
+		}
+	// },[email,message,loginProcessStep,checklistStatuses])
+	},[loginProcessStep])
 	return (
 		<>
 			<div id="login-component" className="login-component">
@@ -209,7 +286,7 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 					</div>
 					<div className="login-component--grid_buttons">
 						<div className="buttons-group">
-							{loggedIn === true?(
+							{(loggedIn === true)?(
 								<button id="sign-out" onClick={signOutHandler} className="signout-button" >Sign out</button>
 							):(
 								<button id="sign-in" onClick={signInHandler} className="signin-button" >Sign in</button>

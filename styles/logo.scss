@@ -10,17 +10,17 @@
 	}
 	@media (min-width: 768px){
 		top: 10px;
-		left: 10px;
+		left: 0px;
 		transform: scale(1,1) rotate(1.5deg);
 	}
 	@media (min-width: 1024px){
 		top: 10px;
-		right: 95px;
+		left: -25px;
 		transform: scale(1.2,1.2) rotate(1.5deg);
 	}
 	@media (min-width: 1280px){
 		top: 10px;
-		left: -20px;
+		left: -80px;
 		transform: scale(1.2,1.2) rotate(1.5deg);
 	}
 	@media (min-width: 1536px){

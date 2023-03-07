@@ -1,0 +1,22 @@
+@import "variables";
+@import "mixins";
+
+.concept-component{
+	width: 100%;
+	font-size: 1.15rem;
+	padding:  1.5rem;
+}
+.concept-title{
+	color:white;
+	
+}
+.concept-text{
+	color: white;
+	font-size:1.15rem;
+	margin: 0 auto;
+	line-height: 1.75rem;
+	font-weight: bold;
+	@media (min-width:640px){
+		width: 90%;
+	}
+}

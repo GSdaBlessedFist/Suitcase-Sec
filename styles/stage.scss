@@ -13,12 +13,17 @@
 								 "login"
 								 "info";
 		}
+		@media (min-width:1280px){
+			grid-template-rows: 25% 35% 40%;
+			grid-template-areas: "checklist"
+								 "login"
+								 "info";
+		}
 		&_checklist{
 			grid-area: checklist;
 			background: #bbb;
 		}
 		&_login{
-			/*This one...suitcase goes in here*/
 			grid-area: login;
 			display:flex;
 			justify-content: center;

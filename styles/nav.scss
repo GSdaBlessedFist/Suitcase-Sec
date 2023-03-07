@@ -1,16 +1,21 @@
 @import "mixins";
 @import "variables";
 
-.nav{
+.nav-component{
 	grid-area:nav;
 	display:flex;
-	justify-content:flex-start;
+	justify-content:space-between;
 	align-items:center;
 	width: 100%;
 	height: $navHeight;
 	@at-root{
+		#nav-logo-about-group{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
 		#nav-logo{
-			margin-left: 5px;
+			margin-left: 15px;
 			height:$navHeight;
 		}
 		#nav-about-site{
@@ -23,7 +28,21 @@
 		#nav-dev{
 			position: relative;
 			top: 10px;
-			left:160px;
+			@media (min-width: 640px){
+				/*left:140px;*/
+			}
+			@media (min-width: 768px){
+				/*left:270px;	*/
+			}
+			@media (min-width: 1024px){
+				/*left:520px;*/
+			}
+			@media (min-width: 1280px){
+				/*left:780px;*/
+			}
+			@media (min-width: 1536px){
+				/*right: -50px;*/
+			}
 			margin: 10px;	
 			color: $c1;
 			&::after{
