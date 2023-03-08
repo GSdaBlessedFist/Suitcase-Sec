@@ -1,0 +1,56 @@
+@import "variables";
+@import "mixins";
+
+.example-object{
+  padding: 15px auto;
+  border: 10px skyblue solid;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  overflow:hidden;
+}
+.example1-slot-container,.example2-slot-container {
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  border: 5px skyblue solid;
+  width: 175px;
+  height: 125px;
+  z-index: 200;
+  transform: scale(.8);
+}
+.example1-roller-container {
+  width:100%;
+  height: 100%;
+  scroll-snap-type: y mandatory;
+  overflow-y:auto;
+}
+.example2-roller-container {
+  width:100%;
+  height: 100%;
+  scroll-snap-type: y mandatory;
+  
+}
+[class^="example1-roller-item-"],[class^="example2-roller-item-"]{
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 95%;
+  height: 125px;
+  border: 3px skyblue dashed;
+  scroll-snap-align: start;
+}
+[class^="example2-roller-item-"]{
+  position: relative;
+  top: -125px;
+}
+.examples-captions{
+  position:relative;
+  @media (min-width:640px){
+    width: 60%;
+    font-size: .85rem;
+  }
+}

@@ -60,12 +60,12 @@
 }
 .info-title{
 	margin-bottom: 20px;
-	@include mainFont(2rem,700);
+	@include mainFont(1.75rem,700);
 	color: white;
 }
 .info-text{
 	margin-bottom: 20px;
-	@include mainFont(1.85rem,400);
+	@include mainFont(1.65rem,400);
 	color: white;
 }
 .list{

@@ -30,9 +30,7 @@ export default function AboutSite(){
 
               	<div className="about-stage--grid_challengeslist">
 	              	<ChallengeSection challenges={challenges} setChallenge={setChallenge} challenge={challenge}/>	
-		              <div className="footer">
-										<CodeButton/>
-									</div>	
+		              
               	</div>
               			
               </div>

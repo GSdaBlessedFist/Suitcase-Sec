@@ -8,10 +8,13 @@
 		display:grid;
 		height:100%;
 		@media (min-width:640px){
-			grid-template-rows: 22% 33% 45%;
+			grid-template-rows: 25% 30% 45%;
 			grid-template-areas: "checklist"
 								 "login"
 								 "info";
+		}
+		@media(min-width:1024px) {
+			grid-template-rows: 20% 35% 45%;
 		}
 		@media (min-width:1280px){
 			grid-template-rows: 25% 35% 40%;

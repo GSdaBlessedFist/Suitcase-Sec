@@ -1,5 +1,6 @@
 import {useEffect,useState} from "react";
 import aboutSiteInfo from '../about-site-info';
+import CodeButton from "../components/CodeButton";
 
 export default function ChallengeSection({challenges,setChallenge,challenge}){
 	
@@ -24,6 +25,9 @@ export default function ChallengeSection({challenges,setChallenge,challenge}){
 					)
 				})}
 			</div>
+			<div className="footer">
+				<CodeButton/>
+			</div>	
 		</div>
 	</>)
 }

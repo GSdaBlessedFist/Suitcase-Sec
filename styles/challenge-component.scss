@@ -5,12 +5,20 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	background: $c1;
+	background: linear-gradient(to bottom,$c1,$c2 95%);
 	width: 100%;
+	height: 100%;
 	padding: 1.5rem ;
 }
 .challenge-title{
+	position: relative;
 	color:white;
+	@media (min-width:1024px){
+		left: 3rem;
+	}
+	@media (min-width:1536px){
+		left: 20rem;
+	}
 }
 .challenge-text{
 	display:flex;
@@ -21,16 +29,35 @@
 	@media (min-width:640px){
 		width: 90%;
 	}
-	color: $c2;
+	@media (min-width:768px){
+		width: 80%;
+	}
+	@media (min-width:1536px){
+		width: 60%;
+	}
+	color: white;
 	font-size:1.15rem;
 	line-height: 1.75rem;
-}
+	overflow-x: hidden;}
 .challenge-link{
+	position: relative;
 	margin-right: 1.25rem;
 	margin-bottom: .5rem;
-	transition: .5s all;
-	&:hover{
-		color: white;
+	@media (min-width:640px) {
+		font-size:1.15rem;
+	}
+	@media (min-width:1024px) {
+		font-size:1.35rem;
+	}
+	@media (min-width:1536px) {
+		font-size:1.75rem;
+	}
+	&::after{
+		position: relative;
+		left:10px;
+		color: $c2;
+		font-weight: bold;
+		content: " |";
 	}
 }
 

@@ -16,6 +16,9 @@
 								 "challengedescription"
 								 "challengeslist";
 		}
+		@media (min-width:1536px){
+			grid-template-rows:  170px 400px auto ;
+		}
 		&_concept{
 			grid-area: concept;
 			border-top: 10px $c2 solid;
