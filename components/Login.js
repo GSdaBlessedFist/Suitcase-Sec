@@ -107,13 +107,15 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 	const newAccountHandler = async ()=>{
 		
 		let combination = [slotA,slotB,slotC,slotD].join('');
-		let user = new User({email:email,password:combination})
+		
+		console.log(`newAccountHandler:: email:${email}`)
 		try{
 			if(!email ){
+				setLoginProcessStep("InvalidEmail")
 				setChecklistStatuses({
 					noEmailnoPIN:false,
 					invalidEmail:true,
-					newAccountFail:true,
+					newAccountFail:true, 
 					emailNotFound:false,
 					incorrectEmailPIN:false,
 					validEmail:false,
@@ -123,58 +125,50 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 					signedOut:false
 				})
 			};
+			let user = new User({email:email,password:combination})
 			const newAccount = await axios.post("/api/newaccount",user)
 			.then(response =>{ 
-				setLoginProcessStep(response.data.loginStep)
-				console.log(loginProcessStep)
-				if(loginProcessStep == "NewAccountFail"){
-					setLoggedIn(false)
-				}else{
-					setLoggedIn(true)
-				}
-				// if(loginProcessStep == "NewAccountFail"){
-				// 	setEmail("")
-				// 	setLoggedIn(false)
+				setLoginProcessStep(response.data.loginStep);
+				// console.log("line:132"+loginProcessStep);
+				setMessage(response.data.message);
+
+				// if(loginProcessStep == "NewAccountFail") {
+					// setLoggedIn(false);
+					// setEmail("")
+				// 	console.log(message)
+				// 	console.log("Line:137"+loginProcessStep)
 				// 	setChecklistStatuses({
 				// 		noEmailnoPIN:false,
 				// 		invalidEmail:false,
-				// 		newAccountFail:true,
+				// 		newAccountFail:true, 
 				// 		emailNotFound:false,
 				// 		incorrectEmailPIN:false,
 				// 		validEmail:true,
 				// 		newAccountSuccess:false,
-				// 		authenticated:true,
+				// 		authenticated:false,
 				// 		signedIn:false,
 				// 		signedOut:true
 				// 	})
-				// 	setMessage(response.data.message);
-				// 	console.log()
-				// }else{
-				// 	setChecklistStatuses({
-				// 		noEmailnoPIN:false,
-				// 		invalidEmail:false,
-				// 		newAccountFail:false,
-				// 		emailNotFound:false,
-				// 		incorrectEmailPIN:false,
-				// 		validEmail:true,
-				// 		newAccountSuccess:true,
-				// 		authenticated:true,
-				// 		signedIn:true,
-				// 		signedOut:false
-				// 	})
-				// 	setMessage(response.data.message);
-				// 	setLoggedIn(true)
+				// 	return;
+				// }
+				//if(loginProcessStep == "NewAccountSuccess") {
+					// setLoggedIn(true);
+					// console.log("Line:142"+loginProcessStep)
+					// setChecklistStatuses({
+					// 	noEmailnoPIN:false,
+					// 	invalidEmail:false,
+					// 	newAccountFail:false, 
+					// 	emailNotFound:true,
+					// 	incorrectEmailPIN:false,
+					// 	validEmail:true,
+					// 	newAccountSuccess:true,
+					// 	authenticated:true,
+					// 	signedIn:true,
+					// 	signedOut:false
+					// })
+				// 	return;
 				// }
 				
-				setMessage(response.data.message);
-				if(loginProcessStep === "NewAccountFail"){
-					setEmail("")
-					console.log(loginProcessStep)
-					return
-				}					
-				// }else{
-				// 	setLoggedIn(true)
-				// }
 			})		
 
 		}catch(err){
@@ -217,6 +211,7 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 		// }
 		switch(loginProcessStep){
 			case "SigninFailEmail":
+				setLoggedIn(false);
 				setChecklistStatuses({
 					noEmailnoPIN:false,
 					invalidEmail:false,
@@ -231,6 +226,7 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 				})
 				break;
 			case "SigninSuccess":
+				setLoggedIn(true);
 				setChecklistStatuses({
 					noEmailnoPIN:false,
 					invalidEmail:false,
@@ -245,7 +241,8 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 				})
 				break;
 			case "NewAccountFail":
-				setEmail("")
+				//setEmail("")
+				setLoggedIn(false);
 				setChecklistStatuses({
 					noEmailnoPIN:false,
 					invalidEmail:true,
@@ -259,9 +256,23 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 					signedOut:true
 				})
 				break;
-
+			case "NewAccountSuccess":
+				setLoggedIn(true);
+				setChecklistStatuses({
+					noEmailnoPIN:false,
+					invalidEmail:false,
+					newAccountFail:false, 
+					emailNotFound:true,
+					incorrectEmailPIN:false,
+					validEmail:true,
+					newAccountSuccess:true,
+					authenticated:true,
+					signedIn:true,
+					signedOut:false
+				})
+				break;	
 		}
-	// },[email,message,loginProcessStep,checklistStatuses])
+	// },[email,message,loginProcessStep,checklistStatuses,loggedIn])
 	},[loginProcessStep])
 	return (
 		<>
