@@ -1,14 +1,20 @@
 <div align="center">
   <div style="color:#1e85ae;line-height:0">a suitcase lock inspired project</div>
-  <div style="color:#1e85ae;font-size:3rem">Suitcase-Sec.site</div>
+  <div style="color:#1e85ae;font-size:3rem;line-height:1.5">Suitcase-Sec.site</div>
 </div>
 
 
+<!--
 <div id="badges" align="center">
   <a href="https://www.linkedin.com/in/jason-e-zamora/" >
     <img src="https://img.shields.io/badge/LinkedIn-blue?logo=linkedin?style=for-the-badge&logoColor=white" alt="LinkedIn Badge"/>
   </a>
-  <!-- <img src="https://komarev.com/ghpvc/?username=GSdaBlessedFist&style=flat-square&color=blue" alt=""/> -->
+
+  
+   <img src="https://komarev.com/ghpvc/?username=GSdaBlessedFist&style=flat-square&color=blue" alt=""/> -->
+</div>
+<div align="center">
+  <img src="public/images/suitcase.svg" alt="Suitcase-sec logo" title="Suitcase-sec logo" style="transform:rotate(1.5deg)"width="350" height="300" /> 
 </div>
 <!-- <div align="center">
   <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="600" height="300"/>
