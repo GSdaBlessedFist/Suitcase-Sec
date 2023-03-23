@@ -9,7 +9,7 @@ export default function Dashboard({email}){
 		router.reload(window.location.pathname);
 	}
 
-	console.log(displayName)
+	console.log(`Welcome, ${displayName}`)
 	return (<>
 		<div className="dashboard-component">
 			<div id="dashboard-header">Thank you for playing along, <span style={{"fontWeight":"bold","fontSize":"1.25rem"}}>{displayName}</span></div>

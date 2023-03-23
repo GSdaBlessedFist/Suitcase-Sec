@@ -20,12 +20,12 @@ const lockUI = `<div class="example-object">
     <code>
       .<strong>example1</strong>-roller-container{
       &nbsp;&nbsp;overflow:&nbsp;<span style="color:skyblue;">auto</span>;<br>
-      }
+      } /*<em>left side</em>*/
     </code><br>
     <code>
       .<strong>example2</strong>-roller-container{
-      &nbsp;&nbsp;overflow:&nbsp;<span style="color:skyblue;">hidden</span>;<br>
-  	  }
+      &nbsp;&nbsp;<del>overflow:&nbsp;<span style="color:skyblue;">auto</span>;</del><br>
+  	  } /*<em>right side</em>*/
     </code>
   </div>
 </div>`
@@ -59,7 +59,7 @@ const aboutSiteInfo ={
 	"concept":"Equally inspired by the 'ditto' sheets of yester-year and the suitcase lock, this app is intended to breakdown the authentication process using a novelty PIN interface.",
 	"challenges":["tech stack","step checklist","the lock UI","the PIN mechanism","API routing","storage","graphic work","responsive"],
 	"challengeDescriptions":{
-		"step checklist":"The step checklist updates as the user enters valid/invalid information, logs in, or creates a new account.  To make this happen I passed the setState as prop into children components. Once updated from within, the state is returned to the parent, then disseminated to sibiling children components.  This technique was used update the features/challenges section we're on now.",
+		"step checklist":"The step checklist, at the top, updates as the user enters valid/invalid information, logs in, or creates a new account.  To make this happen I passed the setState as prop into children components. Once updated from within, the state is returned to the parent, then disseminated to sibiling children components.  This technique was used update the features/challenges section we're on now.",
 		"the PIN mechanism":"The PIN lock idea was gone with because it adds interactivity. In order to address a user not specifically selecting a PIN, '0000' is defaulted. To add to the password's <strong>complexity<\/strong>, the PIN itself isn't hashed. It is the data-attribute on the individual roller element that gets hashed using bcryptjs. <strong>Using this method, the password string is easily 16-20 characters...then hashed.<\/strong><\/br><div style=\"margin-top:.5rem;\">The divs have the following:<\/div><code class=\"pin-mechanism-code\"><strong>data-slotletter=\"A\" data-numberposition=\"Zer0\"</strong><\/code><\/div></br><div>The data-attribute was used like this:</br><code class=\"pin-mechanism-code\"><strong>setSlotA(`${entry.target.dataset.slotletter}${entry.target.dataset.numberposition}`)<\/strong></code></br>",
 		"the lock UI":`<div>The default PIN is \'0000\' in case the user doesn\'t <em>activate</em> the lock component. When activated the user sees the roller elements to select a PIN.</div><br><\/div><div class=\"lock-ui-pic\">${lockUI}<\/div>`,
 		"storage":`<div>Since no OAuth solution would be necessary for this project, a small MongoDB database was created. The <strong>users</strong> collection contains documents using a simple Mongoose object model:</div><br><code class="storage-code">${usermodelHtml}</code>`,
