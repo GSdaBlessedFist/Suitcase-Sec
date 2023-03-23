@@ -216,7 +216,7 @@ export default function Login({email,setEmail,loginProcessStep,setLoginProcessSt
 				break;	
 		}
 	// },[email,message,loginProcessStep,checklistStatuses,loggedIn])
-	},[loginProcessStep])
+	},[loginProcessStep,setChecklistStatuses,setLoggedIn])
 	return (
 		<>
 			<div id="login-component" className="login-component">
