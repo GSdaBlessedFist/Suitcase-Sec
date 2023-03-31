@@ -1,0 +1,40 @@
+<svg fill="none" viewBox="0 0 640 500" width="640" height="500" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        @media (prefers-color-scheme:light){
+          .container{
+            --lightText: #89cfeb;
+            --darkText: #1e85ae;
+          }
+        }
+        .container {
+          width: 100%;
+          height: 768px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: white;
+        }
+        .introgroup{
+          width: 100%;
+          height: 75px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      </style>
+      <body>
+        <div class="container">
+          <div class="introgroup">
+            <div>a suitcase lock inspired project</div>
+            <div>Suitcase-Sec.site</div
+          </div>
+            
+          
+          
+        </div>
+      </body>
+  </foreignObject>
+</svg>
