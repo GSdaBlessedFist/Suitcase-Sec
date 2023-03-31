@@ -1,4 +1,28 @@
-<svg width="100%" height="100%" viewBox="0 0 0 0" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" viewBox="0 0 0 0" width="100%" height="" >xmlns="http://www.w3.org/2000/svg">
+  <foreignObject x="0" y="0" width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        *{
+          border:1px steelblue solid;
+        }
+        h1{}
+        .title {
+          border:1px skyblue solid;
+        }
+      </style>
+      <div align="center" class="title">
+      <div >a suitcase lock inspired project</div>
+      <h1 >Suitcase-Sec.site</h1>
+    </div>
+    </div>
+  </foreignObject>
+</svg>
+
+
+
+
+
+<!-- <svg width="100%" height="100%" viewBox="0 0 0 0" xmlns="http://www.w3.org/2000/svg">
   
   <foreignObject width="100%" height="100%">
     <div xmlns="http://www.w3.org/1999/xhtml">
@@ -28,7 +52,7 @@
     <p>During a brainstorm, I saw a suitcase with one of those roller locks. I wondered if I could create a secure PIN UI with the concept in mind. After some tinkering, I was able to make it happen.</p>
     <p>asfsdf</p>
   </foreignObject>
-</svg>
+</svg> -->
 
 
 
