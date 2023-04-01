@@ -13,9 +13,10 @@
         padding: 0;
         color: inherit;
         text-decoration: none;
-        list-style: none;
+        list-style: number;
         outline: none;
         box-sizing: border-box;
+        font-family: monospace;
       }
       .A{
         border: 2px aqua solid;
@@ -46,14 +47,28 @@
         height: 75px;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         background-color: var(--lightColor);
         color: white;
+        font-family: sans-serif;
+        border-bottom: 5px var(--darkColor) solid;
       }
-      
-      .intro-section{
-
+      .intro{
+        width: 100%;
+        background-color: white;
+        color: var(--darkColor);
+        padding: 2rem;
+        border-bottom: 5px var(--darkColor) solid;
+      }
+      .featuredSections{
+        width:100%;
+        background-color: var(--lightColor);
+        padding: 2rem;
+      }
+      .sectionItem{
+        padding: 0 3rem;
+        color: white;
       }
       @media (prefers-color-scheme: light) {
         .body {
@@ -69,14 +84,22 @@
     <div class='body '>
       <div class='container '>
         <div class='headergroup '>
-          <div class=''>
+          <div>
             <div >a suitcase lock inspired project</div>
             <h1 >Suitcase-Sec.site</h1>
           </div>
         </div>
-        <hr width="100%" height="10" color="#2f9bc6"/>
-        <section >
-          here
+        
+        <section class="intro" >
+          <p>While brainstorming, one day, I caught sight of a suitcase's roller PIN lock and was inspired/challenged.  The purpose of this site was to demonstrate and give an overview of how this kind of login UI could work.  Nothing big...a two-page app.</p>
+        </section>
+        <section class="featuredSections">
+          <h2 style="color:white;">index page</h2>
+            <ol class="sectionItem">
+              <li>the process step checklist</li>
+              <li>the roller PIN UI</li>
+              <li>state descriptions</li>
+            </ol>
         </section>
       </div>
     </div>
