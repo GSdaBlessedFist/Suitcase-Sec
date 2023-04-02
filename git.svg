@@ -34,6 +34,10 @@
         align-items: center;
         justify-content: center;
       }
+      h4{
+        text-decoration:underline;
+        margin: 1rem 0;
+      }
       .container {
         height: calc(100% - 10px);
         width: calc(100% - 10px);
@@ -70,6 +74,10 @@
         padding: 0 3rem;
         color: white;
       }
+      .itemDescription{
+        width: 100%;
+        text-indent: 20px;        
+      }
       @media (prefers-color-scheme: light) {
         .body {
         }
@@ -96,8 +104,14 @@
         <section class="featuredSections">
           <h2 style="color:white;">index page</h2>
             <ol class="sectionItem">
-              <li>the process step checklist</li>
-              <li>the roller PIN UI</li>
+              <li>
+                <h4>the process step checklist</h4>
+                <p class="itemDescription">In this section the various states of the login process are reflected as the user proceeds. There were several conditions considered for this custom authentication including:"NoEmail","InvalidEmail","SigninSuccess", ect. </p> 
+              </li>
+              <li>
+                <h4>the roller PIN UI</h4>
+                <p class="itemDescription"></p> 
+              </li>
               <li>state descriptions</li>
             </ol>
         </section>
