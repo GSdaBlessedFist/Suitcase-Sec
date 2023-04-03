@@ -1,5 +1,5 @@
 
-<svg fill="none" viewBox="0 0 600 768" width="600" height="768" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" viewBox="0 0 600 1500" width="600" height="1500" xmlns="http://www.w3.org/2000/svg">
   <foreignObject width="100%" height="100%">
   <div xmlns="http://www.w3.org/1999/xhtml">
     <style>
@@ -58,12 +58,27 @@
         font-family: sans-serif;
         border-bottom: 5px var(--darkColor) solid;
       }
+      h1{
+        text-shadow: 0px 5px 5px var(--darkColor);
+      }
+      h2{
+        text-shadow: 0px 1px 2px var(--darkColor);
+      }
+      .tech-section{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        background-color: var(--darkColor);
+      }
+      .tech-text{
+        margin:.25rem;
+        color: var(--lightColor);
+      }
       .intro{
         width: 100%;
         background-color: white;
         color: var(--darkColor);
         padding: 2rem;
-        border-bottom: 5px var(--darkColor) solid;
       }
       .featuredSections{
         width:100%;
@@ -76,7 +91,8 @@
       }
       .itemDescription{
         width: 100%;
-        text-indent: 20px;        
+        text-indent: 20px;    
+        margin-bottom: 1rem;    
       }
       @media (prefers-color-scheme: light) {
         .body {
@@ -101,6 +117,13 @@
         <section class="intro" >
           <p>While brainstorming, one day, I caught sight of a suitcase's roller PIN lock and was inspired/challenged.  The purpose of this site was to demonstrate and give an overview of how this kind of login UI could work.  Nothing big...a two-page app.</p>
         </section>
+
+        <div class="tech-section">
+          <div class="tech-text">Next.js</div>
+          <div class="tech-text">MongoDB</div>
+          <div class="tech-text">SASS</div>      
+        </div>
+
         <section class="featuredSections">
           <h2 style="color:white;">index page</h2>
             <ol class="sectionItem">
@@ -110,9 +133,15 @@
               </li>
               <li>
                 <h4>the roller PIN UI</h4>
-                <p class="itemDescription"></p> 
+                <p class="itemDescription">The PIN interface is a group of four individually wrapped divs within a container. Each of the divs (slots) contains a "roller" div that will not be fully seen because the overflow property.  With the <strong><em>overflow</em></strong> property set to '<em>hidden</em>', only the active PIN position is visible. </p>
+                <p class="itemDescription">For this example, I used <strong><em>IntersectionObserver</em></strong>s for each of the slots. Each of the divs creating the roller have data-attributes with funky spellings of the position loaded. If this was a real implemenation, the values would have been stored as environment variables, though. When a div reaches the observer threshold, it snaps into place and it's data-attribute value updates a password state.</p> 
+                <p class="itemDescription">The password string that is created is a combination of the slot's ID (A|B|C|D) and the roller position...ie: "AF!veB2woCth3eDn!Ne".  This string is then hashed with the Bcrypt library. </p>
               </li>
-              <li>state descriptions</li>
+              <li>
+                <h4>state descriptions</h4>
+                <p class="itemDescription">The checklist and message displayed at the bottom are synced up to match the user's logging in actions.  A valid email is first needed whether a new account is needed or it is a return user. If the user decides to create a new account, there is a default PIN set for "0000". As part of the validation process, no duplicate emails will be accepted.  This is made so using Mongoose's <em>unique</em> attribute when setting up the object model. </p>
+                <p class="itemDescription">Each of the steps of the log in process have some information provided to hopefully assist in the understanding of user authentication process.</p>
+              </li>
             </ol>
         </section>
       </div>
